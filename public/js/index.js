@@ -1,51 +1,57 @@
-/*****************AUTHOR:amour dahou********************/
-/*************GITHUB:http://github.com/Amour22**********/
-/*******************COPYRIGHT 2022**********************/
-/**************ALL RIGHT RESERVED**********************/
+/*******************************************************/
+/*        
+/*              AUTHOR:amour dahou
+/*         GITHUB:http://github.com/Amour22
+/*         COPYRIGHT 2022 ALL RIGHT RESERVED
+/*              UPDATED AT 11th Sep 2022
+/*
+/******************************************************/
 
-//declaration et initialisation de variables
-const hamburger=document.querySelector('.hamburger');
-const hamburgerBox=document.querySelector('.hamburgerBox');
-const header=document.querySelector('header');
-const navigation=document.querySelector('nav');
-const copyYear=document.querySelector('.copyYear');
-const goUp=document.querySelector('.goUp');
-let Pagedown=document.querySelector('.copyrightBox');
-let PagedownPos=Pagedown.getBoundingClientRect().y;
+//principal variables declaration and initialization
+const hamburger = document.querySelector(".hamburger");
+const hamburgerBox = document.querySelector(".hamburgerBox");
+const header = document.querySelector("header");
+const navigation = document.querySelector("nav");
+const body = document.querySelector("body");
+const copyYear = document.querySelector(".copyYear");
+const goUp = document.querySelector(".goUp");
+let Pagedown = document.querySelector(".copyrightBox");
+let PagedownPos = Pagedown.getBoundingClientRect().y;
 
 //STICKY HEADER
-window.addEventListener('scroll',sticky_header);
-function sticky_header(){
-	header.classList.toggle('sticky',window.scrollY>0);
+window.addEventListener("scroll", sticky_header);
+function sticky_header() {
+  header.classList.toggle("sticky", window.scrollY > 0);
 }
-
-//MENU POUR MOBILE
-//affichage du menu
-hamburger.addEventListener('click',showNav);
-function showNav(){
-	navigation.classList.toggle('showNav');
-	closeNav();
+//Mobile Navigation Menu Opening
+hamburger.addEventListener("click", showNav);
+function showNav() {
+  navigation.classList.toggle("showNav");
+  closeNav();
 }
-//affichage du bouton de fermeture
-function closeNav(){
-	hamburger.classList.toggle('closeMenu');
-	hamburgerBox.classList.toggle('hamburgerBoxFixation');
+//Mobile Navigation closure button displaying
+function closeNav() {
+  hamburger.classList.toggle("closeMenu");
+  hamburgerBox.classList.toggle("hamburgerBoxFixation");
 }
-//fermeture lorsqu'un lien du menu est cliqué
-const navLink=document.querySelectorAll('nav ul li a');
-navLink.forEach(i=>{
-	i.addEventListener('click',()=>{
-		navigation.classList.remove('showNav');
-		hamburger.classList.remove('closeMenu');
-		hamburgerBox.classList.remove('hamburgerBoxFixation');
-	});
+//Let's close Nav when menu link is clicked
+const navLink = document.querySelectorAll("nav ul li a");
+navLink.forEach((i) => {
+  i.addEventListener("click", () => {
+    navigation.classList.remove("showNav");
+    hamburger.classList.remove("closeMenu");
+    hamburgerBox.classList.remove("hamburgerBoxFixation");
+    body.removeAttribute("style");
+  });
 });
-
-//BOUTON ALLER VERS LE HAUT 
-window.addEventListener('scroll',toggleBtn);
-function toggleBtn(){
-	goUp.classList.toggle('showGoUpBtn',window.scrollY>(window.outerHeight)*2 && window.scrollY<PagedownPos);
+//GO TO DOCUMENT TOP BUTTON
+window.addEventListener("scroll", toggleBtn);
+function toggleBtn() {
+  goUp.classList.toggle(
+    "showGoUpBtn",
+    window.scrollY > window.outerHeight * 2 && window.scrollY < PagedownPos
+  );
 }
-//MISE A JOUR DU COPYRIGHT
-let nYear=new Date();
-copyYear.textContent=nYear.getFullYear();
+//Copyright Year Update
+let nYear = new Date();
+copyYear.textContent = nYear.getFullYear();
